@@ -16,8 +16,9 @@
 ;; かな漢字入力モードでSpaceを押したとき、半角空白が挿入されるようにする。
 (setq anthy-wide-space " ")
 
+;; Macにおいて￥記号の代わりにバックスラッシュを入力する。
 (when (eq system-type 'darwin)
-  (define-key global-map [?¥] [?\\]))  ;; ¥の代わりにバックスラッシュを入力する
+  (define-key global-map [?¥] [?\\]))
 
 (when (eq system-type 'darwin)
   (anthy-change-hiragana-map "4@" "ヴ")

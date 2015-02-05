@@ -31,7 +31,7 @@
 ; (column-number-mode t)
 
 ;; リージョンに色を付ける。tは色を付ける、0は色を付けない。
-; (transient-mark-mode t)
+;; (transient-mark-mode t)
 
 ;; GCを減らして軽くする(デフォルトの10倍)。
 ;; 現代のマシンではもっと大きくしても良い。

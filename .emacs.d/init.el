@@ -141,7 +141,7 @@
 (setq display-time-24hr-format 0)
 
 ;; 時計を表示。tは表示、0は表示しない。
-(display-time-mode t)
+(display-time-mode 0)
 
 ;; バッテリー残量を表示。tは表示、0は表示しない。
 (display-battery-mode t)
@@ -203,7 +203,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Emacsは標準ではタブ文字を使っている。
-;; 変数indent-tabs-modeにnilを設定することで、タブ文字ではなく空白を用いるようになる。
+;; 変数indent-tabs-modeにnilを設定することで、タブ文字ではなく空白を用
+;; いるようになる。
 ;; 変数indent-tabs-modeはバッファローカル変数である。すべてのバッファ
 ;; で有効にするにはset-defaultを使用する。
 ;; 変数indent-tabs-modeがtの場合、タブ文字を使う。
