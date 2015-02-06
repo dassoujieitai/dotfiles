@@ -22,7 +22,8 @@ alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
 
 unamerslt=`uname`
 
-if [ $unamerslt = "Linux" ]; then
+echo $PATH | grep -q 'haskell-platform'
+if [ $unamerslt = "Linux" -a ! $? ]; then
     PATH=~/.cabal/bin:$PATH
     PATH=~/.rbenv/bin:$PATH
     PATH=/opt/lang/haskell/haskell-platform/haskell-platform-2013.2.0.0/bin:$PATH
