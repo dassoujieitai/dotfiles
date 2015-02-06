@@ -20,11 +20,28 @@ alias start-emacs-client-nw="emacsclient -nw"
 alias start-emacs-client-terminal="emacsclient -nw"
 alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
 
-source $(brew --prefix nvm)/nvm.sh
-export NVM_DIR=~/.nvm
+unamerslt=`uname`
+
+PATH=~/.cabal/bin:$PATH
+PATH=~/.rbenv/bin:$PATH
+if [ $unamerslt = "Linux" ]; then
+    PATH=/opt/lang/haskell/haskell-platform/haskell-platform-2013.2.0.0/bin:$PATH
+    PATH=/opt/lang/scheme/gauche/gauche-0.9.4/bin:$PATH
+fi
+export PATH
+
+if [ $unamerslt != "Linux" ]; then
+    source $(brew --prefix nvm)/nvm.sh
+    export NVM_DIR=~/.nvm
+fi
 
 # for byobu
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
+if [ $unamerslt != "Linux" ]; then
+    export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
+fi
+if [ $unamerslt = "Linux" ]; then
+    export VTE_CJK_WIDTH=1
+fi
 
 # Ruby gems for 2.1.1
 # export GEM_HOME=${HOME}/lib/gems/2.1.1
@@ -32,14 +49,20 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
 # export PATH=${GEM_HOME}/bin:${PATH}
 
 # for rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
+if [ $unamerslt != "Linux" ]; then
+    export RBENV_ROOT=/usr/local/var/rbenv
+fi
 eval "$(rbenv init -)"
 
 # for byobu
-export BYOBU_PREFIX=$(brew --prefix)
+if [ $unamerslt != "Linux" ]; then
+    export BYOBU_PREFIX=$(brew --prefix)
+fi
 
 # for zsh-syntax-highlight
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ $unamerslt != "Linux" ]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # setup JAVA_HOME environment variable
 if [ -e /usr/libexec/java_home ]; then
