@@ -44,6 +44,13 @@
 ;; P63 init-loader.elを利用する
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; init-loader
+;; インストール方法
+;;
+;;     $ cd ~/.emacs.d/public_repos
+;;     $ git clone https://github.com/emacs-jp/init-loader
+;;
+
 (require 'init-loader)
 (init-loader-load "~/.emacs.d/conf")
 
@@ -220,6 +227,14 @@
 ;; 5.6 表示・装飾に関する設定
 ;; P96 表示テーマの設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; color-theme
+;; インストール方法
+;;
+;;     $ cd ~/.emacs.d/elisp
+;;     $ wget "http://download.savannah.gnu.org/releases/color-theme/color-theme-6.6.0.tar.gz"
+;;     $ tar xfz color-theme-6.6.0.tar.gz
+;;
 
 (when (require 'color-theme nil t)
   ;; テーマを読み込むための設定。
