@@ -22,11 +22,17 @@ alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
 
 unamerslt=`uname`
 
-PATH=~/.cabal/bin:$PATH
-PATH=~/.rbenv/bin:$PATH
 if [ $unamerslt = "Linux" ]; then
+    PATH=~/.cabal/bin:$PATH
+    PATH=~/.rbenv/bin:$PATH
     PATH=/opt/lang/haskell/haskell-platform/haskell-platform-2013.2.0.0/bin:$PATH
     PATH=/opt/lang/scheme/gauche/gauche-0.9.4/bin:$PATH
+fi
+if [ $unamerslt != "Linux" ]; then
+    PATH=/usr/local/sbin:$PATH
+    PATH=/usr/local/bin:$PATH 
+    PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+    PATH=~/.cabal/bin:$PATH
 fi
 export PATH
 
