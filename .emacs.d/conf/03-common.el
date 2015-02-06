@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 現在行に色を付ける。tは色をつける、0は色をつけない。
-(global-hl-line-mode t)
+(global-hl-line-mode 0)
 ;; 色
 (set-face-background 'hl-line "darkblue")
 (set-face-foreground 'hl-line "white")

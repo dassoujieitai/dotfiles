@@ -22,28 +22,13 @@ alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
 
 unamerslt=`uname`
 
-echo $PATH | grep -q 'haskell-platform'
-if [ $unamerslt = "Linux" -a ! $? ]; then
-    PATH=~/.cabal/bin:$PATH
-    PATH=~/.rbenv/bin:$PATH
-    PATH=/opt/lang/haskell/haskell-platform/haskell-platform-2013.2.0.0/bin:$PATH
-    PATH=/opt/lang/scheme/gauche/gauche-0.9.4/bin:$PATH
-fi
-if [ $unamerslt = "Darwin" ]; then
-    PATH=/usr/local/sbin:$PATH
-    PATH=/usr/local/bin:$PATH 
-    PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-    PATH=~/.cabal/bin:$PATH
-fi
-export PATH
-
 if [ $unamerslt != "Linux" ]; then
     source $(brew --prefix nvm)/nvm.sh
     export NVM_DIR=~/.nvm
 fi
 
 # for byobu
-if [ $unamerslt != "Linux" ]; then
+if [ $unamerslt = "Darwin" ]; then
     export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
 fi
 if [ $unamerslt = "Linux" ]; then
@@ -56,18 +41,18 @@ fi
 # export PATH=${GEM_HOME}/bin:${PATH}
 
 # for rbenv
-if [ $unamerslt != "Linux" ]; then
+if [ $unamerslt = "Darwin" ]; then
     export RBENV_ROOT=/usr/local/var/rbenv
 fi
 eval "$(rbenv init -)"
 
 # for byobu
-if [ $unamerslt != "Linux" ]; then
+if [ $unamerslt = "Darwin" ]; then
     export BYOBU_PREFIX=$(brew --prefix)
 fi
 
 # for zsh-syntax-highlight
-if [ $unamerslt != "Linux" ]; then
+if [ $unamerslt = "Darwin" ]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 

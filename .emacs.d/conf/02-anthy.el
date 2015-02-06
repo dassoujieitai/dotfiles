@@ -30,3 +30,12 @@
   (anthy-change-hiragana-map "}"  "」")
   (anthy-change-hiragana-map "?"  "・")
   (anthy-change-hiragana-map "~"  "を"))
+
+(when (eq system-type 'gnu/linux)
+  (anthy-change-hiragana-map "4@" "ヴ")
+  (anthy-change-hiragana-map "\\" "ー")
+  (anthy-change-hiragana-map "`"  "ろ")
+  (anthy-change-hiragana-map "|"  "を")
+  (anthy-change-hiragana-map "{"  "「")
+  (anthy-change-hiragana-map "}"  "」")
+  (anthy-change-hiragana-map "?"  "・"))
