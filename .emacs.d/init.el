@@ -253,6 +253,14 @@
 ;; P113 拡張機能のインストール
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; auto-install
+;; インストール方法
+;;
+;;     $ cd ~/.emacs.d/elisp
+;;     $ wget http://www.emacswiki.org/emacs/download/auto-install.el
+;;     $ emacs --batch -Q -f batch-byte-compile auto-install.el
+;;
+
 ;; auto-installの設定
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/elisp/")
@@ -307,3 +315,4 @@
 ;; C-l (recenter-top-button)で真ん中に表示する。他にtopとbuttomがある。
 (setq recenter-positions '(middle))
 
+(put 'set-goal-column 'disabled nil)
