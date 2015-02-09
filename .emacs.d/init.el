@@ -253,6 +253,37 @@
 ;; P113 拡張機能のインストール
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Emacs24のパッケージ管理システムをproxy経由で使う
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ~/.emacs.d/init.elに、以下の設定を追加する。
+;;
+;;     (setq url-proxy-services
+;;           '(("http"  . "プロキシサーバホスト名:ポート番号")
+;;             ("https" . "プロキシサーバホスト名:ポート番号")))
+;;
+;; 認証の必要なProxyの場合、*scratch*などで事前に
+;;
+;;     (base64-encode-string "ユーザー名:パスワード")
+;;
+;; を実行して、ユーザ名、パスワードをBase64に変換した文字列を作成する。
+;; その文字列を使って以下のように設定する。
+;;
+;;     (setq url-http-proxy-basic-auth-storage
+;;           '(("proxyhostname:port" ("Proxy" . "base64string"))))
+;;
+;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
+;; になる。
+
+;(setq url-http-proxy-basic-auth-storage
+;      '(("proxy.intra.oki.co.jp:8080"
+;	 ("Proxy" . "YTExNDcxNzp4TmNneDNCWA=="))))
+
+;(setq url-proxy-services
+;      '(("http"  . "proxy.intra.oki.co.jp:8080")
+;	("https" . "proxy.intra.oki.co.jp:8080")))
+
 ;; auto-install
 ;; インストール方法
 ;;
@@ -277,13 +308,13 @@
 ;; package.elの設定
 (when (require 'package nil t)
   (add-to-list 'package-archives
-               '("marmalade" . "http://marmalade-repo.org/packages/"))
+	       '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives
-               '("ELPA" . "http://tromey.com/elpa/"))
+	       '("ELPA" . "http://tromey.com/elpa/"))
   (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/"))
+	       '("melpa" . "http://melpa.milkbox.net/packages/"))
   (add-to-list 'package-archives
-               '("e6h" . "http://www.e6h.org/packages/"))
+	       '("e6h" . "http://www.e6h.org/packages/"))
   ;; インストールしたパッケージにロードパスを通して読み込む。
   (package-initialize))
 
@@ -317,33 +348,4 @@
 
 (put 'set-goal-column 'disabled nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Emacs24のパッケージ管理システムをproxy経由で使う
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq url-http-proxy-basic-auth-storage
-      '(("proxy.intra.oki.co.jp:8080"
-         ("Proxy" . "YTExNDcxNzp4TmNneDNCWA=="))))
-
 (put 'narrow-to-region 'disabled nil)
-
-;; ~/.emacs.d/init.elに、以下の設定を追加する。
-;;
-;;     (setq url-proxy-services
-;;           '(("http" . "proxyhostname:port")
-;;             ("https" . "proxyhostname:port")))
-;;
-;; 認証の必要なProxyの場合、*scratch*などで事前に
-;;
-;;     (base64-encode-string "username:password")
-;;
-;; を実行して、ユーザ名、パスワードをBase64に変換した文字列を作成する。
-;; その文字列を使って以下のように設定する。
-;;
-;;     (setq url-http-proxy-basic-auth-storage
-;;           '(("proxyhostname:port" ("Proxy" . "base64string"))))
-;;
-;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
-;; になる。
-;;
-;;
-
