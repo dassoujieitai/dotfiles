@@ -316,3 +316,34 @@
 (setq recenter-positions '(middle))
 
 (put 'set-goal-column 'disabled nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Emacs24のパッケージ管理システムをproxy経由で使う
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq url-http-proxy-basic-auth-storage
+      '(("proxy.intra.oki.co.jp:8080"
+         ("Proxy" . "YTExNDcxNzp4TmNneDNCWA=="))))
+
+(put 'narrow-to-region 'disabled nil)
+
+;; ~/.emacs.d/init.elに、以下の設定を追加する。
+;;
+;;     (setq url-proxy-services
+;;           '(("http" . "proxyhostname:port")
+;;             ("https" . "proxyhostname:port")))
+;;
+;; 認証の必要なProxyの場合、*scratch*などで事前に
+;;
+;;     (base64-encode-string "username:password")
+;;
+;; を実行して、ユーザ名、パスワードをBase64に変換した文字列を作成する。
+;; その文字列を使って以下のように設定する。
+;;
+;;     (setq url-http-proxy-basic-auth-storage
+;;           '(("proxyhostname:port" ("Proxy" . "base64string"))))
+;;
+;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
+;; になる。
+;;
+;;
+
