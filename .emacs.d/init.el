@@ -240,7 +240,7 @@
   ;; テーマを読み込むための設定。
   (color-theme-initialize)
   ;; 初期テーマをDark Laptopにする。
-  (color-theme-simple-1))
+  (color-theme-midnight))
 
 ;; M-x color-theme-select RET
 ;;     - カラーテーマ選択画面が表示される。
@@ -276,13 +276,13 @@
 ;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
 ;; になる。
 
-;(setq url-http-proxy-basic-auth-storage
-;      '(("proxy.intra.oki.co.jp:8080"
-;	 ("Proxy" . "YTExNDcxNzp4TmNneDNCWA=="))))
+(setq url-http-proxy-basic-auth-storage
+      '(("proxy.intra.oki.co.jp:8080"
+	 ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
 
-;(setq url-proxy-services
-;      '(("http"  . "proxy.intra.oki.co.jp:8080")
-;	("https" . "proxy.intra.oki.co.jp:8080")))
+(setq url-proxy-services
+      '(("http"  . "proxy.intra.oki.co.jp:8080")
+	("https" . "proxy.intra.oki.co.jp:8080")))
 
 ;; auto-install
 ;; インストール方法
