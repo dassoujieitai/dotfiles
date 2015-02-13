@@ -29,6 +29,8 @@ alias start-emacs-client="emacsclient --create-frame &"
 alias start-emacs-client-nw="emacsclient -nw"
 alias start-emacs-client-terminal="emacsclient -nw"
 alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
+alias stop-emacs-daemon="emacsclient -e '(kill-emacs)'"
+alias end-emacs-daemon="emacsclient -e '(kill-emacs)'"
 
 if [ $unamerslt != "Linux" ]; then
     source $(brew --prefix nvm)/nvm.sh

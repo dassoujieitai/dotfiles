@@ -23,35 +23,31 @@
 
 ;; 大きいメッセージとみなす行数の設定
 ;(setq mime-edit-message-default-max-lines 1000)
+(setq mime-edit-message-default-max-lines 1000000)
 
 ;;; [[ 個人情報の設定 ]]
 
 ;; From: の設定
 ;(setq wl-from "Your Name <e-mail@example.com>")
-(setq wl-from "小池 政徳 <koikemasanori@jcom.home.ne.jp>") ; JCOM用
+(setq wl-from "小池 政徳 <koike326@oki.com>")
 
 ;; (system-name) が FQDN を返さない場合、
 ;; `wl-local-domain' にホスト名を除いたドメイン名を設定してください。
 ;(setq wl-local-domain "example.com")
-(setq wl-local-domain "jcom.home.ne.jp") ; JCOM用
+(setq wl-local-domain "oki.com")
 
 ;; 自分のメールアドレスのリスト
 (setq wl-user-mail-address-list
       (list (wl-address-header-extract-address wl-from)
 	    ;; "e-mail2@example.com"
 	    ;; "e-mail3@example.net" ...
-	    "koikemasanori@jcom.home.ne.jp"
-	    "koike326@oki.com"
-	    "dassoujieitai@gmail.com"
-	    "kagerenbowz@i.softbank.jp"
-	    "dassoujieitai@t.vodafone.ne.jp"
 	    ))
 
 ;; 自分の参加しているメーリングリストのリスト
 (setq wl-subscribed-mailing-list
-      '("wl@ml.gentei.org"
-	"apel-ja@m17n.org"
-	"emacs-mime-ja@m17n.org"
+      '(;; "wl@ml.gentei.org"
+	;; "apel-ja@m17n.org"
+	;; "emacs-mime-ja@m17n.org"
 	;; "ml@example.com" ...
 	))
 
@@ -60,10 +56,10 @@
 ;; IMAP サーバの設定
 (setq elmo-imap4-default-server "localhost")
 ;; POP サーバの設定
-; (setq elmo-pop3-default-server "localhost")
+;(setq elmo-pop3-default-server "localhost")
 (setq elmo-pop3-default-server "pop31.intra.oki.co.jp")
 ;; SMTP サーバの設定
-; (setq wl-smtp-posting-server "localhost")
+;(setq wl-smtp-posting-server "localhost")
 (setq wl-smtp-posting-server "smtp31.intra.oki.co.jp")
 ;; ニュースサーバの設定
 (setq elmo-nntp-default-server "localhost")
@@ -87,7 +83,7 @@
 ;(setq wl-default-spec "+")
 
 ;; Folder Carbon Copy
-;(setq wl-fcc "+outbox")
+(setq wl-fcc "+outbox")
 
 ;; 終了時に確認する
 (setq wl-interactive-exit t)
@@ -97,17 +93,17 @@
 
 ;; スレッドは常に開く
 ;(setq wl-thread-insert-opened t)
-(setq wl-thread-insert-opened t)
 
 ;; サマリバッファの左にフォルダバッファを表示する (3ペイン表示)
 ;(setq wl-stay-folder-window t)
-(setq wl-stay-folder-window t)
+(setq wl-stay-folder-window nil)
 
 ;; 長い行を切り縮める
 ;(setq wl-message-truncate-lines t)
-(setq wl-message-truncate-lines 0)
 ;(setq wl-draft-truncate-lines t)
+(setq wl-message-truncate-lines 0)
 (setq wl-draft-truncate-lines 0)
+
 ;; XEmacs (21.4.6 より前) の場合、以下も必要。
 ;(setq truncate-partial-width-windows nil)
 
@@ -137,9 +133,11 @@
 
 ;; 未読がないフォルダは飛ばす(SPCキーだけで読み進める場合は便利)
 ;(setq wl-auto-select-next 'skip-no-unread)
+(setq wl-auto-select-next 'skip-no-unread)
 
 ;; 未読メッセージを優先的に読む
 ;(setq wl-summary-move-order 'unread)
+(setq wl-summary-move-order 'unread)
 
 ;; 着信通知の設定
 ;(setq wl-biff-check-folder-list '("%inbox"))
@@ -274,7 +272,6 @@
 
 ;; 返信時のヘッダに相手の名前を入れない。
 ;(setq wl-draft-reply-use-address-with-full-name nil)
-(setq wl-draft-reply-use-address-with-full-name nil)
 
 ;; メールの返信時に宛先を付ける方針の設定
 ;; 下記変数の alist の要素
@@ -322,11 +319,46 @@
 
 ;; 隠したいヘッダの設定
 (setq wl-message-ignored-field-list
-      '(".*Received:" ".*Path:" ".*Id:" "^References:"
-	"^Replied:" "^Errors-To:"
-	"^Lines:" "^Sender:" ".*Host:" "^Xref:"
-	"^Content-Type:" "^Precedence:"
-	"^Status:" "^X-VM-.*:"))
+      '(
+	"^Content-Type:"
+	"^Delivered-To:"
+	"^Lines:"
+	"^Replied:"
+	"^Status:"
+	"^X-Original-To:"
+        "^X-Mail-Agent:"
+        ".*Host:"
+        ".*Id:"
+        ".*Path:"
+        ".*Received:"
+        "^Authentication-Results-To:"
+        "^Authentication-Results:"
+        "^Content-Language:"
+        "^Content-Transfer-Encoding:"
+        "^DKIM-Signature:"
+        "^Errors-To:"
+        "^In-Reply-To:"
+        "^List-Unsubscribe:"
+        "^MIME-Version:"
+        "^Message-ID:"
+        "^Precedence:"
+        "^References:"
+        "^Reply-To:"
+        "^Sender:"
+        "^Thread-Index:"
+        "^User-Agent:"
+        "^X-AnalysisOut:"
+        "^X-Content-Scanned:"
+        "^X-KeepSent:"
+        "^X-MIMETrack:"
+        "^X-Mailer:"
+        "^X-Priority:"
+        "^X-Spam:"
+        "^X-TM-AS-MML:"
+        "^X-VM-.*:"
+        "^Xref:"
+        "^Content-Disposition:"
+))
 
 ;; 表示するヘッダの設定
 ;; 'wl-message-ignored-field-list' より優先される
@@ -334,6 +366,7 @@
 
 ;; 分割されたメッセージは自動的に結合する
 ;(setq wl-message-auto-reassemble-message/partial t)
+(setq wl-message-auto-reassemble-message/partial t)
 
 ;; X-Face を表示する
 (when window-system
@@ -393,7 +426,7 @@
 ;; サマリバッファで `o' (wl-summary-refile) した時, *最初*に spam かど
 ;; うかを判定する様にする
 ;(unless (memq 'wl-refile-guess-by-spam wl-refile-guess-functions)
-					;  (setq wl-refile-guess-functions
+;  (setq wl-refile-guess-functions
 ;	(cons #'wl-refile-guess-by-spam
 ;	      wl-refile-guess-functions)))
 
@@ -411,4 +444,61 @@
 ;	(append wl-auto-refile-guess-functions
 ;		'(wl-refile-guess-by-spam))))
 
+;; 「丸付き数字」「はしごだか」が入った JISメールを読むための設定
+(coding-system-put 'iso-2022-jp :decode-translation-table
+       '(cp51932-decode japanese-ucs-cp932-to-jis-map))
+
+;; 「丸付き数字」「はしごだか」が入った JISメールを送るための設定
+;; 以下設定をしない場合は、本来の utf-8 で送付 (消極 Windows派になる)
+(coding-system-put 'iso-2022-jp :encode-translation-table
+      '(cp51932-encode))
+
+;; charset の判定する際に cp932 を sjis より優先順位を上げておくことで
+;; 機種依存文字を表示できるようにする (charset と coding-system の優先度設定)。
+(set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
+		      'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
+(set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
+
+;;; ファイル名が日本語の添付ファイルをデコードする [semi-gnus-ja: 4332]
+(eval-after-load "mime"
+  '(defadvice mime-entity-filename
+     (after eword-decode-for-broken-MUA activate)
+     "Decode eworded file name for *BROKEN* MUA."
+     (when (stringp ad-return-value)
+       (setq ad-return-value (eword-decode-string ad-return-value t)))))
+
+;;; ファイル名が日本語の添付ファイルをエンコードする
+(eval-after-load "std11"
+  '(defadvice std11-wrap-as-quoted-string (before encode-string activate)
+     "Encode a string."
+     (require 'eword-encode)
+     (ad-set-arg 0 (or (eword-encode-string (ad-get-arg 0)) "" )) ))
+
+;; メールDBにcontent-typeを加える
+(setq elmo-msgdb-extra-fields
+    (cons "content-type" elmo-msgdb-extra-fields))
+
+;; 添付ファイルがある場合は「@」を表示
+(setq wl-summary-line-format
+      "%n%T%P%1@%M/%D(%W)%h:%m %t%[%17(%c %f%) %] %#%~%s")
+(setq wl-summary-line-format-spec-alist
+      (append wl-summary-line-format-spec-alist
+              '((?@ (wl-summary-line-attached)))))
+
+;; BCC:の設定
+(setq wl-bcc "koike326@oki.com")
+
+;; cp5022x.elを利用。
+(add-to-list 'mime-charset-coding-system-alist '(iso-2022-jp . cp50220))
+
+;; UTF-8なメールに返信する。
+(add-hook 'wl-draft-mode-hook
+          (lambda ()
+            (add-to-list
+	     'mime-charset-type-list '(utf-8 8 nil))))
+
+;; elmo-folder-update-threasholdによるサマリ更新質問をしない。
+(setq elmo-folder-update-confirm nil)
+
 ;;; dot.wl ends here
+
