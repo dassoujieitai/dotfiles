@@ -8,7 +8,8 @@
 (setq wl-icon-directory "~/.emacs.d/elpa/wanderlust-20150127.2331/icons")
 
 ;; メールを送信するSMTPサーバ。初期値は'nil'。
-(setq wl-smtp-posting-server "smtp31.intra.oki.co.jp")
+; (setq wl-smtp-posting-server "smtp31.intra.oki.co.jp")
+(setq wl-smtp-posting-server "smtp.jcom.home.ne.jp")
 
 ;; ニュース投稿用の NNTP サーバ。 初期設定は 'nil'。
 ; (setq wl-nntp-posting-server "your.nntp.example.com")
