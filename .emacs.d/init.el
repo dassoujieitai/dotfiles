@@ -349,3 +349,7 @@
 (put 'set-goal-column 'disabled nil)
 
 (put 'narrow-to-region 'disabled nil)
+
+;; 折り返しトグルコマンド。一行がウィンドウの横幅より大きいときに、折
+;; り返して表示するか、折り返さずに画面の外にはみ出すか。
+(define-key global-map (kbd "C-c l") 'toggle-trucate-lines)

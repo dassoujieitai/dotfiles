@@ -26,3 +26,11 @@
       'wl-draft-send
       'wl-draft-kill
       'mail-send-hook))
+
+;; Infoの追加。
+(setq Info-default-directory-list
+      (append Info-default-directory-list
+	      (list
+       (expand-file-name
+	"~/.emacs.d/public_repos/wanderlust/doc/info"))))
+
