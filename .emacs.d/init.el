@@ -30,10 +30,10 @@
   (let (path)
     (dolist (path paths paths)
       (let ((default-directory
-	      (expand-file-name (concat user-emacs-directory path))))
-	(add-to-list 'load-path default-directory)
-	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-	    (normal-top-level-add-subdirs-to-load-path))))))
+              (expand-file-name (concat user-emacs-directory path))))
+        (add-to-list 'load-path default-directory)
+        (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+            (normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリとそのサブディレクトリをload-pathに追加。
 (add-to-load-path "elisp" "conf" "public_repos")
@@ -157,14 +157,14 @@
 (defun count-lines-and-chars ()
   (if mark-active
       (format "%d lines, %d chars "
-	      (count-lines (region-beginning) (region-end))
-	      (- (region-end) (region-beginning)))
+              (count-lines (region-beginning) (region-end))
+              (- (region-end) (region-beginning)))
     ;; これだとエラーエリアがちらつく。
     ;; (count-lines-region (region-beginning) (region-end))
     ""))
 
 (add-to-list 'default-mode-line-format
-	     '(:eval (count-lines-and-chars)))
+             '(:eval (count-lines-and-chars)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs実践入門
@@ -220,7 +220,7 @@
 
 ;; php-modeのみタブ文字を使用しない。
 (add-hook 'php-mode-hook
-	  (lambda () (setq indent-tabs-mode nil)))
+          (lambda () (setq indent-tabs-mode nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs実践入門
@@ -240,7 +240,7 @@
   ;; テーマを読み込むための設定。
   (color-theme-initialize)
   ;; 初期テーマをDark Laptopにする。
-  (color-theme-midnight))
+  (color-theme-arjen))
 
 ;; M-x color-theme-select RET
 ;;     - カラーテーマ選択画面が表示される。
@@ -276,13 +276,13 @@
 ;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
 ;; になる。
 
-(setq url-http-proxy-basic-auth-storage
-      '(("proxy.intra.oki.co.jp:8080"
-	 ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
+; (setq url-http-proxy-basic-auth-storage
+;      '(("proxy.intra.oki.co.jp:8080"
+;        ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
 
-(setq url-proxy-services
-      '(("http"  . "proxy.intra.oki.co.jp:8080")
-	("https" . "proxy.intra.oki.co.jp:8080")))
+; (setq url-proxy-services
+;       '(("http"  . "proxy.intra.oki.co.jp:8080")
+;       ("https" . "proxy.intra.oki.co.jp:8080")))
 
 ;; auto-install
 ;; インストール方法
@@ -308,13 +308,13 @@
 ;; package.elの設定
 (when (require 'package nil t)
   (add-to-list 'package-archives
-	       '("marmalade" . "http://marmalade-repo.org/packages/"))
+               '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives
-	       '("ELPA" . "http://tromey.com/elpa/"))
+               '("ELPA" . "http://tromey.com/elpa/"))
   (add-to-list 'package-archives
-	       '("melpa" . "http://melpa.milkbox.net/packages/"))
+               '("melpa" . "http://melpa.milkbox.net/packages/"))
   (add-to-list 'package-archives
-	       '("e6h" . "http://www.e6h.org/packages/"))
+               '("e6h" . "http://www.e6h.org/packages/"))
   ;; インストールしたパッケージにロードパスを通して読み込む。
   (package-initialize))
 
