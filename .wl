@@ -22,18 +22,20 @@
 (setq mime-edit-split-message nil)
 
 ;; 大きいメッセージとみなす行数の設定
-;(setq mime-edit-message-default-max-lines 1000)
+(setq mime-edit-message-default-max-lines 100000)
 
 ;;; [[ 個人情報の設定 ]]
 
 ;; From: の設定
 ;(setq wl-from "Your Name <e-mail@example.com>")
 (setq wl-from "小池 政徳 <koikemasanori@jcom.home.ne.jp>") ; JCOM用
+;(setq wl-from "小池 政徳 <koike326@oki.com>")             ; work用
 
 ;; (system-name) が FQDN を返さない場合、
 ;; `wl-local-domain' にホスト名を除いたドメイン名を設定してください。
 ;(setq wl-local-domain "example.com")
 (setq wl-local-domain "jcom.home.ne.jp") ; JCOM用
+;(setq wl-local-domain "oki.com") ; work用
 
 ;; 自分のメールアドレスのリスト
 (setq wl-user-mail-address-list
@@ -61,10 +63,12 @@
 (setq elmo-imap4-default-server "localhost")
 ;; POP サーバの設定
 ; (setq elmo-pop3-default-server "localhost")
-(setq elmo-pop3-default-server "pop31.intra.oki.co.jp")
+(setq elmo-pop3-default-server "pop.jcom.home.ne.jp") ; JCOM用
+;(setq elmo-pop3-default-server "pop31.intra.oki.co.jp") ; work用
 ;; SMTP サーバの設定
 ; (setq wl-smtp-posting-server "localhost")
-(setq wl-smtp-posting-server "smtp31.intra.oki.co.jp")
+(setq wl-smtp-posting-server "smtp.jcom.home.ne.jp") ; JCOM用
+;(setq wl-smtp-posting-server "smtp31.intra.oki.co.jp") ; work用
 ;; ニュースサーバの設定
 (setq elmo-nntp-default-server "localhost")
 ;; 投稿先のニュースサーバ
@@ -81,13 +85,13 @@
 ;;; [[ 基本的な設定 ]]
 
 ;; `wl-summary-goto-folder' の時に選択するデフォルトのフォルダ
-;(setq wl-default-folder "+inbox")
+(setq wl-default-folder "+inbox")
 
 ;; フォルダ名補完時に使用するデフォルトのスペック
-;(setq wl-default-spec "+")
+(setq wl-default-spec "+")
 
 ;; Folder Carbon Copy
-;(setq wl-fcc "+outbox")
+(setq wl-fcc "+outbox")
 
 ;; 終了時に確認する
 (setq wl-interactive-exit t)
@@ -117,6 +121,8 @@
 ;; スレッド表示のインデントを無制限にする。
 ;(setq wl-summary-indent-length-limit nil)
 ;(setq wl-summary-width nil)
+(setq wl-summary-indent-length-limit nil)
+(setq wl-summary-width nil)
 
 ;; サブジェクトが変わったらスレッドを切って表示
 ;(setq wl-summary-divide-thread-when-subject-changed t)
@@ -128,6 +134,12 @@
 ;      wl-thread-vertical-str		 "|"
 ;      wl-thread-horizontal-str		 "-"
 ;      wl-thread-space-str		 " ")
+(setq wl-thread-indent-level 1)
+(setq wl-thread-have-younger-brother-str "+"
+      wl-thread-youngest-child-str	 "+"
+      wl-thread-vertical-str		 "|"
+      wl-thread-horizontal-str		 "-"
+      wl-thread-space-str		 " ")
 
 ;; サマリ移動後に先頭メッセージを表示する
 ;(setq wl-auto-select-first t)
@@ -137,9 +149,11 @@
 
 ;; 未読がないフォルダは飛ばす(SPCキーだけで読み進める場合は便利)
 ;(setq wl-auto-select-next 'skip-no-unread)
+(setq wl-auto-select-next 'skip-no-unread)
 
 ;; 未読メッセージを優先的に読む
 ;(setq wl-summary-move-order 'unread)
+(setq wl-summary-move-order 'unread)
 
 ;; 着信通知の設定
 ;(setq wl-biff-check-folder-list '("%inbox"))
@@ -224,6 +238,8 @@
 ;; 短い User-Agent: フィールドを使う
 ;(setq wl-generate-mailer-string-function
 ;      'wl-generate-user-agent-string-1)
+(setq wl-generate-mailer-string-function
+      'wl-generate-user-agent-string-1)
 
 ;; PGP で暗号化する時に自分の公開鍵も含める。
 ;; (そのメッセージを自分でも読めるように)
@@ -334,6 +350,7 @@
 
 ;; 分割されたメッセージは自動的に結合する
 ;(setq wl-message-auto-reassemble-message/partial t)
+(setq wl-message-auto-reassemble-message/partial t)
 
 ;; X-Face を表示する
 (when window-system
@@ -410,5 +427,34 @@
 ;  (setq wl-auto-refile-guess-functions
 ;	(append wl-auto-refile-guess-functions
 ;		'(wl-refile-guess-by-spam))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 機種依存文字の表示対応
+;; http://www.ysnb.net/meadow/meadow-users-jp/2012/msg00010.html
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; 「丸付き数字」「はしごだか」が入った JISメールを読むための設定
+;(coding-system-put 'iso-2022-jp :decode-translation-table
+;       '(cp51932-decode japanese-ucs-cp932-to-jis-map))
+
+;; 「丸付き数字」「はしごだか」が入った JISメールを送るための設定
+;; 以下設定をしない場合は、本来の utf-8 で送付 (消極 Windows派になる)
+;(coding-system-put 'iso-2022-jp :encode-translation-table
+;      '(cp51932-encode))
+
+;; charset の判定する際に cp932 を sjis より優先順位を上げておくことで
+;; 機種依存文字を表示できるようにする (charset と coding-system の優先度設定)。
+;(set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
+;		      'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
+;(set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
+
+;; awasira / cp5022x.el
+;;     $ cd ~/.emacs.d/public_repos
+;;     $ git clone http://github.com/awasira/cp5022x.el.git
+; (require 'cp5022x)
+; ;; iso-2022-jpをcp50220として扱う。
+;; SEMI (cf. http://d.hatena.ne.jp/kiwanami/20091103/1257243524)
+; (add-to-list 'mime-charset-coding-system-alist
+;             '(iso-2022-jp . cp50220))
 
 ;;; dot.wl ends here
