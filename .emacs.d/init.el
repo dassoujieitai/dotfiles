@@ -315,6 +315,9 @@
                '("melpa" . "http://melpa.milkbox.net/packages/"))
   (add-to-list 'package-archives
                '("e6h" . "http://www.e6h.org/packages/"))
+  (add-to-list 'package-archives
+	       '("melpa-stable" .
+		 "http://melpa-stable.milkbox.net/packages/"))
   ;; インストールしたパッケージにロードパスを通して読み込む。
   (package-initialize))
 
