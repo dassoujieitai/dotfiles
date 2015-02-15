@@ -1,3 +1,15 @@
+;; PATHの追加。
+(add-to-list 'exec-path "/opt/lang/scheme/gauche/gauche-0.9.4/bin")
+
+;; Info-additional-directory-listの追加。
+(require 'info)
+(add-to-list 'Info-additional-directory-list
+	     "/opt/lang/scheme/gauche/gauche-0.9.4/share/info")
+;; さらに下記のコマンドを実行する必要あり。
+;;     $ cd /opt/lang/scheme/gauche/gauche-0.9.4/share/info
+;;     $ sudo install-info gauche-refj.info.gz dir
+;;     $ sudo install-info gauche-refe.info.gz dir
+
 ;; Gaucheのデフォルトコーディングに合わせる。
 (modify-coding-system-alist 'process "gosh" '(utf-8 . utf-8))
 
