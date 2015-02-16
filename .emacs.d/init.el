@@ -276,13 +276,13 @@
 ;; あとは普通に、M-x package-list-packages でパッケージ一覧を表示できるよう
 ;; になる。
 
-; (setq url-http-proxy-basic-auth-storage
-;      '(("proxy.intra.oki.co.jp:8080"
-;        ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
+(setq url-http-proxy-basic-auth-storage
+      '(((getenv "proxy_host_port")
+	 ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
 
-; (setq url-proxy-services
-;       '(("http"  . "proxy.intra.oki.co.jp:8080")
-;       ("https" . "proxy.intra.oki.co.jp:8080")))
+(setq url-proxy-services
+      '(("http"  . (getenv "proxy_host_port"))
+	("https" . (getenv "proxy_host_port"))))
 
 ;; auto-install
 ;; インストール方法

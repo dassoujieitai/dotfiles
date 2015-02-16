@@ -30,12 +30,12 @@
 
 ;; From: の設定
 ;(setq wl-from "Your Name <e-mail@example.com>")
-(setq wl-from "小池 政徳 <koike326@oki.com>")
+(setq wl-from (getenv "mail_from_masa"))
 
 ;; (system-name) が FQDN を返さない場合、
 ;; `wl-local-domain' にホスト名を除いたドメイン名を設定してください。
-;(setq wl-local-domain "example.com")
-(setq wl-local-domain "oki.com")
+(setq wl-local-domain "example.com")
+(setq wl-local-domain (getenv "mail_local_domain"))
 
 ;; 自分のメールアドレスのリスト
 (setq wl-user-mail-address-list
@@ -58,10 +58,10 @@
 (setq elmo-imap4-default-server "localhost")
 ;; POP サーバの設定
 ;(setq elmo-pop3-default-server "localhost")
-(setq elmo-pop3-default-server "pop31.intra.oki.co.jp")
+(setq elmo-pop3-default-server (getenv "pop_host"))
 ;; SMTP サーバの設定
 ;(setq wl-smtp-posting-server "localhost")
-(setq wl-smtp-posting-server "smtp31.intra.oki.co.jp")
+(setq wl-smtp-posting-server (getenv "smtp_host"))
 ;; ニュースサーバの設定
 (setq elmo-nntp-default-server "localhost")
 ;; 投稿先のニュースサーバ
