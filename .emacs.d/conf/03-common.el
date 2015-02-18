@@ -70,3 +70,6 @@
 ;; ツールバーとスクロールバーを消す。
 ; (tool-bar-mode -1)
 ; (scroll-bar-mode -1)
+
+;; タブを使わない。tはタブを使う馬鹿設定。nilはタブを使わない環境に厳しい設定。
+(setq-default indent-tabs-mode nil)

@@ -411,13 +411,19 @@
 
 
 ;; 自動リファイルのルール設定
-;(setq wl-refile-rule-alist
-;      '(
-;       ("x-ml-name"
-;        ("^Wanderlust" . "+wl")
-;        ("^Elisp" . "+elisp"))
-;       ("From"
-;        ("foo@example\\.com" . "+foo"))))
+(setq wl-refile-rule-alist
+      '(
+       ("x-ml-name"
+        ("^Wanderlust" . "+wl")
+        ("^Elisp" . "+elisp"))
+       ("From"
+        ("foo@example\\.com" . "+foo"))
+       ("Subject"
+	("【From" . "+work/oki/mercury")
+	("訃報"   . "+info/soumu/yamamoto")
+	("【京都" . "+work/kyotobank/koufuri")
+	("初動"   . "+work/oki/shodou")
+	)))
 
 ;; 自動リファイルしない永続マークを設定
 ;; 標準では "N" "U" "!" になっており、未読メッセージを自動リファイルし
@@ -510,6 +516,11 @@
 
 ;; elmo-folder-update-threasholdによるサマリ更新質問をしない。
 (setq elmo-folder-update-confirm nil)
+
+;; To use this module along with a SEMI-based mail client (e.g.
+;; Wanderlust), add this one to your ~/.emacs file or ~/.wl.el file:
+;;
+(require 'mime-w3m)
 
 ;;; dot.wl ends here
 

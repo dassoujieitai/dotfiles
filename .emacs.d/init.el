@@ -277,12 +277,12 @@
 ;; になる。
 
 (setq url-http-proxy-basic-auth-storage
-      '(((getenv "proxy_host_port")
+      '(("proxy.intra.oki.co.jp:8080"
 	 ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
 
 (setq url-proxy-services
-      '(("http"  . (getenv "proxy_host_port"))
-	("https" . (getenv "proxy_host_port"))))
+      '(("http"  . "proxy.intra.oki.co.jp:8080")
+	("https" . "proxy.intra.oki.co.jp:8080")))
 
 ;; auto-install
 ;; インストール方法
