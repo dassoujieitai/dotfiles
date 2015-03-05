@@ -280,6 +280,11 @@
 
 ;; 返信時のウィンドウを広くする
 ;(setq wl-draft-reply-buffer-style 'full)
+;; 返信と転送の場合以外のドラフトバッファのウィンドウの形態を指定する。
+;;     'keep  現在のウィンドウを使う。
+;;     'full  フレーム全体のウィンドウを使う。
+;;     'split 現在のウィンドウを分割して使う。
+(setq wl-draft-reply-buffer-style 'keep)
 
 ;; 返信時のヘッダに相手の名前を入れない。
 ;(setq wl-draft-reply-use-address-with-full-name nil)
@@ -331,6 +336,8 @@
 ;; 隠したいヘッダの設定
 (setq wl-message-ignored-field-list
       '(
+        "^In-Reply-To:"
+        "^References:"
         "^Content-Type:"
         "^Delivered-To:"
         "^Lines:"
@@ -369,11 +376,22 @@
         "^X-VM-.*:"
         "^Xref:"
         "^Content-Disposition:"
-))
+        "^X-Env-Sender:"
+        "^X-Msg-Ref:"
+        "^X-Originating-IP:"
+        "^X-StarScan-Version:"
+        "^X-VirusChecked:"
+        "^Thread-Topic:"
+        "^Accept-Language:"
+        "^X-MS-Has-Attach:"
+        "^X-MS-TNEF-Correlator:"
+        "^x-originating-ip:"
+        ))
 
 ;; 表示するヘッダの設定
 ;; 'wl-message-ignored-field-list' より優先される
-(setq wl-message-visible-field-list '("^Message-Id:"))
+;(setq wl-message-visible-field-list '("^Message-Id:"))
+(setq wl-message-visible-field-list '())
 
 ;; 分割されたメッセージは自動的に結合する
 ;(setq wl-message-auto-reassemble-message/partial t)
@@ -417,13 +435,27 @@
         ("^Wanderlust" . "+wl")
         ("^Elisp" . "+elisp"))
        ("From"
-        ("foo@example\\.com" . "+foo"))
+        ("support@codezine.jp" . "+trash")
+        ("itmedia-mail-service@itmedia.co.jp" . "+trash")
+        ("xlsoftnews@xlsoft.com" . "+trash")
+        ("xlsoftnews@xlsoft.com" . "+trash")
+        ("sems_support@sems.shoeisha.com" . "+trash")
+        ("foo@example\\.com" . "+foo")
+        ("olga.rusnak@starwind.com" . "+trash")
+        ("news-keymans@keyman.or.jp" . "+trash")
+        ("news-keymans@keyman.or.jp" . "+trash")
+        ("itproweb@nikkeibp.co.jp"   . "+trash"))
        ("Subject"
-	("【From" . "+work/oki/mercury")
-	("訃報"   . "+info/soumu/yamamoto")
-	("【京都" . "+work/kyotobank/koufuri")
-	("初動"   . "+work/oki/shodou")
-	)))
+        (".*SMBCCF.*" . "+work/smbccf/misc")
+        ("【From" . "+work/oki/mercury")
+        ("訃報"   . "+info/soumu/yamamoto")
+        (".*【京都.*" . "+work/kyotobank/koufuri")
+        ("京都口振" . "+work/kyotobank/koufuri")
+        ("初動"   . "+work/oki/shodou")
+        ("SEMS事務局" . "+trash")
+        ("TechTarget" . "+trash")
+        ("キーマンズネット" . "+trash")
+        ("ＣＴＣ" . "+trash"))))
 
 ;; 自動リファイルしない永続マークを設定
 ;; 標準では "N" "U" "!" になっており、未読メッセージを自動リファイルし
@@ -520,7 +552,11 @@
 ;; To use this module along with a SEMI-based mail client (e.g.
 ;; Wanderlust), add this one to your ~/.emacs file or ~/.wl.el file:
 ;;
+(require 'w3m-load)
 (require 'mime-w3m)
+
+;; To:とCc:を省略しない。
+(setq wl-message-header-narrowing-fields '())
 
 ;;; dot.wl ends here
 

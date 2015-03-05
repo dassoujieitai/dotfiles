@@ -278,11 +278,11 @@
 
 (setq url-http-proxy-basic-auth-storage
       '(("proxy.intra.oki.co.jp:8080"
-	 ("Proxy" . "YTExNDcxNzp4TmNneDRCWA=="))))
+         ("Proxy" . "YTExNDcxNzp4TmNneDVCWA=="))))
 
 (setq url-proxy-services
       '(("http"  . "proxy.intra.oki.co.jp:8080")
-	("https" . "proxy.intra.oki.co.jp:8080")))
+        ("https" . "proxy.intra.oki.co.jp:8080")))
 
 ;; auto-install
 ;; インストール方法
@@ -316,8 +316,8 @@
   (add-to-list 'package-archives
                '("e6h" . "http://www.e6h.org/packages/"))
   (add-to-list 'package-archives
-	       '("melpa-stable" .
-		 "http://melpa-stable.milkbox.net/packages/"))
+               '("melpa-stable" .
+                 "http://melpa-stable.milkbox.net/packages/"))
   ;; インストールしたパッケージにロードパスを通して読み込む。
   (package-initialize))
 
@@ -337,7 +337,7 @@
 (setq-default indent-tabs-mode 0)
 
 ;; 行末の空白をハイライト。tだとハイライト、0だとハイライトしない。
-(setq-default show-trailing-whitespace t)
+(setq-default show-trailing-whitespace 0)
 
 ;; タブをハイライト。
 ;(add-hook 'font-lock-mode-hook
@@ -356,3 +356,4 @@
 ;; 折り返しトグルコマンド。一行がウィンドウの横幅より大きいときに、折
 ;; り返して表示するか、折り返さずに画面の外にはみ出すか。
 (define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
+

@@ -65,11 +65,28 @@
     (add-to-history minibuffer-history-variable (minibuffer-contents))))
 
 ;; yesと入力するのは面倒なのでyで十分。
-; (defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; ツールバーとスクロールバーを消す。
 ; (tool-bar-mode -1)
 ; (scroll-bar-mode -1)
 
+;; font-lock
+(global-font-lock-mode t)
+
 ;; タブを使わない。tはタブを使う馬鹿設定。nilはタブを使わない環境に厳しい設定。
 (setq-default indent-tabs-mode nil)
+
+;; 行末の空白をハイライト表示する。tは表示する。nilは表示しない。
+(setq-default show-trailing-whitespace t)
+
+;; タブをハイライト表示する。
+(add-hook 'font-lock-mode-hook
+          (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("\t" 0 'trailing-whitespace prepend)))))
+
+;; 自動インデント(electric-indent-mode)を無効にする。
+(electric-indent-mode -1) ;; possibleだと自動インデントする。
+                          ;; negativeだと自動インデントしない。

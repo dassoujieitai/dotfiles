@@ -21,3 +21,12 @@ if [ $unamerlst = "Darwin" -a $flg -ne 0 ]; then
         $path
     )
 fi
+
+if [ -n $proxy_user -a -n $proxy_passwd -a -n $proxy_host -a -n $proxy_port ]
+then
+    export \
+        HTTP_PROXY="http://$proxy_user:$proxy_passwd@$proxy_host:$proxy_port/"
+    export HTTPS_PROXY=${HTTP_PROXY}
+fi
+
+
