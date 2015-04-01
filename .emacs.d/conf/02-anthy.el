@@ -39,3 +39,6 @@
   (anthy-change-hiragana-map "{"  "「")
   (anthy-change-hiragana-map "}"  "」")
   (anthy-change-hiragana-map "?"  "・"))
+
+;; C-pが「カナ入力」と「かな入力」のトグルにになるのを止めさせたい。
+(setq anthy-rkmap-keybind nil)
