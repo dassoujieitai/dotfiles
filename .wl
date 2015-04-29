@@ -435,6 +435,9 @@
         ("^Wanderlust" . "+wl")
         ("^Elisp" . "+elisp"))
        ("From"
+        ("mail_keymans@noreply.itmedia.jp" . "+trash")
+        ("opc-mailinfo@oki.com" . "+service/oki/openpark")
+        ("keyman_otoiawase@sml.itmedia.co.jp" . "+trash")
         ("support@codezine.jp" . "+trash")
         ("itmedia-mail-service@itmedia.co.jp" . "+trash")
         ("xlsoftnews@xlsoft.com" . "+trash")
@@ -446,6 +449,7 @@
         ("news-keymans@keyman.or.jp" . "+trash")
         ("itproweb@nikkeibp.co.jp"   . "+trash"))
        ("Subject"
+        (".*特許公報配信*" . "+work/patent")
         (".*SMBCCF.*" . "+work/smbccf/misc")
         ("【From" . "+work/oki/mercury")
         ("訃報"   . "+info/soumu/yamamoto")
@@ -557,6 +561,32 @@
 
 ;; To:とCc:を省略しない。
 (setq wl-message-header-narrowing-fields '())
+
+;; 書名をメッセージの最後、添付ファイルや転送メッセージの前に挿入する。
+;;
+;; http://debugitos.main.jp/index.php?Ubuntu%2FWanderlust#s9dc7c09
+;;
+;; 現在のパートの最後に指定したファイルを挿入するコンフィグ関数を定義。
+(defun mywl-draft-config-sub-part-bottom-file (content)
+  (goto-char (mime-edit-content-end))
+  (wl-draft-config-sub-file content))
+(add-to-list 'wl-draft-config-sub-func-alist
+             '(part-bottom-file . mywl-draft-config-sub-part-bottom-file))
+
+;; 署名挿入テンプレートを定義する
+(setq wl-template-alist
+      '(
+        ;; 署名を自動的に挿入する。
+        ;; bottom-fileで挿入を行うと、転送する際に署名が転送メールのパー
+        ;; トの最後に挿入される。
+        ;; それはまずいのでpart-bottomに挿入する。
+        ("default" (part-bottom-file . "~/.signature"))))
+
+;; ドラフト作成時に予めテンプレートを適用する
+(add-hook 'wl-mail-setup-hook
+          '(lambda ()
+             (unless wl-draft-reedit
+               (wl-template-apply "default"))))
 
 ;;; dot.wl ends here
 
