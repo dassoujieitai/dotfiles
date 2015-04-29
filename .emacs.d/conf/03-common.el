@@ -72,7 +72,7 @@
 ; (scroll-bar-mode -1)
 
 ;; font-lock
-(global-font-lock-mode t)
+; (global-font-lock-mode t)
 
 ;; タブを使わない。tはタブを使う馬鹿設定。nilはタブを使わない環境に厳しい設定。
 (setq-default indent-tabs-mode nil)
@@ -88,5 +88,13 @@
              '(("\t" 0 'trailing-whitespace prepend)))))
 
 ;; 自動インデント(electric-indent-mode)を無効にする。
-(electric-indent-mode -1) ;; possibleだと自動インデントする。
-                          ;; negativeだと自動インデントしない。
+(electric-indent-mode -1)
+
+;; RETにnewline-and-indentではなく、newlineoを設定する。
+(global-set-key (kbd "RET") 'newline)
+
+;; font-lock-modeをtoggleさせる。C-c f l m。
+(global-set-key (kbd "C-c flm") 'font-lock-mode)
+
+;; auto-fill-modeをtoggleさせる。C-c a f m。
+(global-set-key (kbd "C-c afm") 'auto-fill-mode)
