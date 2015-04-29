@@ -201,7 +201,8 @@
 
 ;; Emacsでは、変数tab-widthの値を見てタブ文字の表示幅を決定している。
 ;; TABの表示幅を設定する。デフォルト値は8。
-(setq-default tab-width 8)
+;(setq-default tab-width 8)
+(setq-default tab-width 4)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs実践入門
@@ -332,12 +333,8 @@
 ;; タブ、無駄なホワイトスペースを入力したくないときの設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; インデントはタブではなくスペースを使用する。
-;; tだとTABを使用、0だとスペース文字を使用。
-(setq-default indent-tabs-mode 0)
-
 ;; 行末の空白をハイライト。tだとハイライト、0だとハイライトしない。
-(setq-default show-trailing-whitespace 0)
+(setq-default show-trailing-whitespace t)
 
 ;; タブをハイライト。
 ;(add-hook 'font-lock-mode-hook
@@ -357,3 +354,4 @@
 ;; り返して表示するか、折り返さずに画面の外にはみ出すか。
 (define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
 
+(put 'upcase-region 'disabled nil)
