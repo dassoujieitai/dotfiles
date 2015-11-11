@@ -98,3 +98,4 @@
 
 ;; auto-fill-modeをtoggleさせる。C-c a f m。
 (global-set-key (kbd "C-c afm") 'auto-fill-mode)
+

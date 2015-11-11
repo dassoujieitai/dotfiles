@@ -279,7 +279,9 @@
 
 (setq url-http-proxy-basic-auth-storage
       '(("proxy.intra.oki.co.jp:8080"
-         ("Proxy" . "YTExNDcxNzp4TmNneDVCWA=="))))
+         ("Proxy" . "YTExNDcxNzpkTU82Qjh2aA=="))))
+         ; ("Proxy" . "YTExNDcxNzp4TmNneDZCWA=="))))
+         ; ("Proxy" . "YTExNDcxNzp4TmNneDVCWA=="))))
 
 (setq url-proxy-services
       '(("http"  . "proxy.intra.oki.co.jp:8080")
@@ -355,3 +357,4 @@
 (define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
 
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

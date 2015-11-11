@@ -93,7 +93,8 @@
 (setq wl-interactive-send t)
 
 ;; スレッドは常に開く
-;(setq wl-thread-insert-opened t)
+;; tならばスレッドは常に開く。nilならばスレッドは開かない
+(setq wl-thread-insert-opened t)
 
 ;; サマリバッファの左にフォルダバッファを表示する (3ペイン表示)
 ;(setq wl-stay-folder-window t)
@@ -449,7 +450,13 @@
         ("news-keymans@keyman.or.jp" . "+trash")
         ("itproweb@nikkeibp.co.jp"   . "+trash"))
        ("Subject"
-        (".*特許公報配信*" . "+work/patent")
+        ("＠IT勉強会" . "+trash")
+        ("中央委員会" . "+info/bu/shionoya")
+        ("【口振システム】" . "+work/kyotobank/koufuri")
+        ("蕨支部ニュース" . "+info/bu/shionoya")
+        ("HUMAN WARE" . "+info/soumu/yamamoto")
+        ("組合" . "+info/bu/shionoya")
+        (".*特許公報配信.*" . "+work/patent")
         (".*SMBCCF.*" . "+work/smbccf/misc")
         ("【From" . "+work/oki/mercury")
         ("訃報"   . "+info/soumu/yamamoto")
