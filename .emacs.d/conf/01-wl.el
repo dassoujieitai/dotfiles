@@ -36,3 +36,16 @@
 
 ;;
 (defvar wl-message-truncate-lines t)
+
+;; この値よりサマリの交信数が多い場合。一部分だけ更新するか確認する。
+;; 初期設定は500。
+(defvar elmo-folder-update-threshold 100000)
+
+;; Non-nilの値を設定すると、elmo-folder-update-thresholdによる更新を行
+;; うか質問する。
+;; nilの値だと質問しない。
+(defvar elmo-folder-update-confirm nil)
+
+;; どうにか500だか5000だかの壁を超える。
+(defvar elmo-message-fetch-threshold 100000)
+(defvar elmo-message-fetch-confirm 100000)

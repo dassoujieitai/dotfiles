@@ -145,7 +145,7 @@
 (setq display-time-day-and-date 0)
 
 ;; 時計を表示。24時間表示。tは表示、0は表示しない。
-(setq display-time-24hr-format 0)
+(defvar display-time-24hr-format 0)
 
 ;; 時計を表示。tは表示、0は表示しない。
 (display-time-mode 0)
@@ -279,7 +279,10 @@
 
 (setq url-http-proxy-basic-auth-storage
       '(("proxy.intra.oki.co.jp:8080"
-         ("Proxy" . "YTExNDcxNzpkTU82Qjh2aA=="))))
+           ("Proxy" . "YTExNDcxNzpubFhMdW9TNQ=="))))
+         ; ("Proxy" . "YTExNDcxNzp4TmNneDFCWA=="))))
+         ; ("Proxy" . "YTExNDcxNzptREVZdUg4eQ=="))))
+         ; ("Proxy" . "YTExNDcxNzpkTU82Qjh2aA=="))))
          ; ("Proxy" . "YTExNDcxNzp4TmNneDZCWA=="))))
          ; ("Proxy" . "YTExNDcxNzp4TmNneDVCWA=="))))
 

@@ -19,10 +19,10 @@ if [ $unamerslt = "Darwin" ]; then
     alias rm="grm -i"
 fi
 if [ $unamerslt = "Linux" ]; then
-    alias ls="ls -F --color=auto"
-    alias cp="cp -i"
-    alias mv="mv -i"
-    alias rm="rm -i"
+    alias ls="/bin/ls -F --color=auto"
+    alias cp="/bin/cp -i"
+    alias mv="/bin/mv -i"
+    alias rm="/bin/rm -i"
 fi
 alias start-emacs-daemon="emacs --daemon"
 alias start-emacs-client="emacsclient --create-frame &"
@@ -91,3 +91,4 @@ kaitoupassword () {
     touch `/home/masa/util/password_generator.rb`
 }
 
+ulimit -c unlimited

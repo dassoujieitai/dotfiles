@@ -100,11 +100,13 @@
 ;(setq wl-stay-folder-window t)
 (setq wl-stay-folder-window nil)
 
-;; 長い行を切り縮める
-;(setq wl-message-truncate-lines t)
-;(setq wl-draft-truncate-lines t)
-(setq wl-message-truncate-lines 0)
-(setq wl-draft-truncate-lines 0)
+;; 引数がNon-nilならば、メッセージバッファで長い行を折り返さない。
+;; 引数がnilならば、    メッセージバッファで長い行を折り返す。
+(setq wl-message-truncate-lines nil)
+
+;; 引数がNon-nilならば、ドラフトバッファで長い行を折り返さない。
+;; 引数がnilならば、    ドラフトバッファで長い行を折り返す。
+(setq wl-draft-truncate-lines nil)
 
 ;; XEmacs (21.4.6 より前) の場合、以下も必要。
 ;(setq truncate-partial-width-windows nil)
@@ -337,6 +339,11 @@
 ;; 隠したいヘッダの設定
 (setq wl-message-ignored-field-list
       '(
+        "^X-LLNOutbound:"
+        "^X-Disclaimed:"
+        "^X-TNEFEvaluated:"
+        "^X-AcceptDeny:"
+        "^X-IBM.*:"
         "^In-Reply-To:"
         "^References:"
         "^Content-Type:"
@@ -363,7 +370,6 @@
         "^Precedence:"
         "^References:"
         "^Reply-To:"
-        "^Sender:"
         "^Thread-Index:"
         "^User-Agent:"
         "^X-AnalysisOut:"
@@ -436,37 +442,24 @@
         ("^Wanderlust" . "+wl")
         ("^Elisp" . "+elisp"))
        ("From"
-        ("mail_keymans@noreply.itmedia.jp" . "+trash")
-        ("opc-mailinfo@oki.com" . "+service/oki/openpark")
-        ("keyman_otoiawase@sml.itmedia.co.jp" . "+trash")
-        ("support@codezine.jp" . "+trash")
-        ("itmedia-mail-service@itmedia.co.jp" . "+trash")
-        ("xlsoftnews@xlsoft.com" . "+trash")
-        ("xlsoftnews@xlsoft.com" . "+trash")
-        ("sems_support@sems.shoeisha.com" . "+trash")
-        ("foo@example\\.com" . "+foo")
-        ("olga.rusnak@starwind.com" . "+trash")
-        ("news-keymans@keyman.or.jp" . "+trash")
-        ("news-keymans@keyman.or.jp" . "+trash")
-        ("itproweb@nikkeibp.co.jp"   . "+trash"))
+        ("opc-mailinfo@oki.com" . "+service/oki/openpark"))
        ("Subject"
-        ("＠IT勉強会" . "+trash")
+        ("経理殿向けイメージウェアハウス" . "iwh_keiri_system")
+        ("IWH（e文書法対応）" . "iwh_keiri_system")
+        ("チーム会" . "+info/team/watanabe")
+        ("組合" . "+info/bu/shionoya")
+        ("集会" . "+info/bu/shionoya")
+        ("研修案内" . "+work/education/oki_education")
+        ("PartnerWorld" . "+work/filenet")
+        ("PeCご案内"  . "+work/education/oki_education")
         ("中央委員会" . "+info/bu/shionoya")
-        ("【口振システム】" . "+work/kyotobank/koufuri")
         ("蕨支部ニュース" . "+info/bu/shionoya")
         ("HUMAN WARE" . "+info/soumu/yamamoto")
-        ("組合" . "+info/bu/shionoya")
-        (".*特許公報配信.*" . "+work/patent")
-        (".*SMBCCF.*" . "+work/smbccf/misc")
+        ("【組合】" . "+info/bu/shionoya")
+        ("特許" . "+work/patent")
         ("【From" . "+work/oki/mercury")
         ("訃報"   . "+info/soumu/yamamoto")
-        (".*【京都.*" . "+work/kyotobank/koufuri")
-        ("京都口振" . "+work/kyotobank/koufuri")
-        ("初動"   . "+work/oki/shodou")
-        ("SEMS事務局" . "+trash")
-        ("TechTarget" . "+trash")
-        ("キーマンズネット" . "+trash")
-        ("ＣＴＣ" . "+trash"))))
+        ("初動"   . "+work/oki/shodou"))))
 
 ;; 自動リファイルしない永続マークを設定
 ;; 標準では "N" "U" "!" になっており、未読メッセージを自動リファイルし
