@@ -444,8 +444,8 @@
        ("From"
         ("opc-mailinfo@oki.com" . "+service/oki/openpark"))
        ("Subject"
-        ("経理殿向けイメージウェアハウス" . "iwh_keiri_system")
-        ("IWH（e文書法対応）" . "iwh_keiri_system")
+        ("経理殿向けイメージウェアハウス" . "+work/oki/iwh_keiri_system")
+        ("IWH（e文書法対応）" . "+work/oki/iwh_keiri_system")
         ("チーム会" . "+info/team/watanabe")
         ("組合" . "+info/bu/shionoya")
         ("集会" . "+info/bu/shionoya")

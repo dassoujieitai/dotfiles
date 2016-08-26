@@ -8,7 +8,7 @@ setopt auto_cd
 setopt correct
 setopt cdable_vars
 
-PROMPT="%n@%m:%~ %% "
+PROMPT="%n@%m:%c %% "
 
 unamerslt=`uname`
 
