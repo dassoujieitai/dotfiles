@@ -1,4 +1,7 @@
 *.jar
 *~
 *DS_Store*
+.*~
+*^
+/.emacs.d/*
 
