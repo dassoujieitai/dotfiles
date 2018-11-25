@@ -1,3 +1,5 @@
+;;; 10-scheme-gauche.el:
+
 ;; PATHの追加。
 (add-to-list 'exec-path "/opt/lang/scheme/gauche/gauche-0.9.6/bin")
 
@@ -93,4 +95,7 @@
 (put 'with-signal-handlers 'scheme-indent-function 1)
 (put 'with-locking-mutex 'scheme-indent-function 1)
 (put 'guard 'scheme-indent-function 1)
+;;; 10-scheme-gauche.el ends here
+
+
 
