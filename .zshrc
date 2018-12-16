@@ -54,7 +54,55 @@ fi
 if [ $unamerslt = "Darwin" ]; then
     export RBENV_ROOT=/usr/local/var/rbenv
 fi
+#eval "$(rbenv init -)"
+
+# for rbenv-user-gems
+# ~/.gem/RUBY_ENGINE/RUBY_VERSION/bin
+#export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
+
+alias start-emacs-daemon="emacs --daemon"
+alias start-emacs-client="emacsclient --create-frame &"
+alias start-emacs-client-nw="emacsclient -nw"
+alias start-emacs-client-terminal="emacsclient -nw"
+alias kill-emacs-daemon="emacsclient -e '(kill-emacs)'"
+alias stop-emacs-daemon="emacsclient -e '(kill-emacs)'"
+alias end-emacs-daemon="emacsclient -e '(kill-emacs)'"
+
+if [ $unamerslt != "Linux" ]; then
+    source $(brew --prefix nvm)/nvm.sh
+    export NVM_DIR=~/.nvm
+fi
+
+# for byobu
+if [ $unamerslt = "Darwin" ]; then
+    export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
+fi
+if [ $unamerslt = "Linux" ]; then
+    export VTE_CJK_WIDTH=1
+fi
+
+# Ruby gems for 2.1.1
+# export GEM_HOME=${HOME}/lib/gems/2.1.1
+
+# export PATH=${GEM_HOME}/bin:${PATH}
+
+# for rbenv
+if [ $unamerslt = "Darwin" ]; then
+    export RBENV_ROOT=/usr/local/var/rbenv
+fi
+
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+rubyver=`rbenv version-name`
+export GEM_HOME="$HOME/lib/ruby/${rubyver}"
+export PATH="$HOME/lib/ruby/${rubyver}/bin:$PATH"
+
+# for rbenv-user-gems
+# ~/.gem/RUBY_ENGINE/RUBY_VERSION/bin
+#export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
+
+#export PATH="/opt/lang/ruby/ruby-2.5.1/bin:$PATH"
+#export PATH="~/lib/ruby/2.5.1/bin:$PATH"
 
 # for byobu
 if [ $unamerslt = "Darwin" ]; then
@@ -92,3 +140,20 @@ kaitoupassword () {
 }
 
 ulimit -c unlimited
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+export PATH=~/.local/bin:$PATH
+
+# gauche
+export PATH="/opt/lang/scheme/gauche/gauche-0.9.6/bin:$PATH"
+
+# for Rust
+export PATH="$HOME/.cargo/bin:$PATH"
