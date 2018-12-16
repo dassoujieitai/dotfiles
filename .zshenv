@@ -22,12 +22,15 @@ if [ $unamerlst = "Darwin" -a $flg -ne 0 ]; then
     )
 fi
 
-if [ -n $proxy_user -a -n $proxy_passwd -a -n $proxy_host -a -n $proxy_port ]
-then
-    export \
-        HTTP_PROXY="http://$proxy_user:$proxy_passwd@$proxy_host:$proxy_port/"
-    export \
-        HTTPS_PROXY="https://$proxy_user:$proxy_passwd@$proxy_host:$proxy_port/"
-fi
+# if [ -n $proxy_user -a -n $proxy_passwd -a -n $proxy_host -a -n $proxy_port ]
+# then
+#     export \
+#         HTTP_PROXY="http://$proxy_user:$proxy_passwd@$proxy_host:$proxy_port/"
+#     export \
+#         HTTPS_PROXY="https://$proxy_user:$proxy_passwd@$proxy_host:$proxy_port/"
+# fi
 
+# for rbenv
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
 
